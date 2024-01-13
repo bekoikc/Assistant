@@ -18,8 +18,8 @@ opera_path = r"C:\Users\bekob\AppData\Local\Programs\Opera\launcher.exe"
 webbrowser.register('opera', None, webbrowser.BackgroundBrowser(opera_path))
 
 # Wolfrom alpha  client
-# appId = 'HEW2PG-6GVE36P6HV'
-# wolfromClient = wolframalpha.Client(appId)
+appId = 'HEW2PG-TQXWARELA7'
+wolfromClient = wolframalpha.Client(appId)
 
 def speak(text, rate = 120):
     engine.setProperty('rate', rate)
@@ -62,6 +62,28 @@ def search_wikipedia(query = ''):
         wikiSummary = str(wikiPage.summary)
         return wikiSummary
 
+#def search_wolframAlpha
+#def search_wolframAlpha(query = ''):
+    #response = wolfromClient.query(query)
+
+    # @succes: wolfram Alpha was able to resolve the query
+    # @numpods: Number of results. This can also contain subpods
+    # @pod: List of results. This can also cpntain subpods
+    #if response['@succes'] == 'false':
+        #return 'Could not computer'
+
+    # Query resolved
+    #else:
+        #result = ''
+        # Question
+        #pod0 = response['pod'][0]
+
+        #pod1 = response['pod'][1]
+        # May contain the answer, has the highest confidence value
+        # If it's primary, or has the title of result or definition, then it's the offical result
+        #if(('result') in pod1['@title'].lower()) or (pod1.get('@primary', 'false') == 'true') or ('definition' in pod1['@title'].lower()):
+
+
 
 #Main loop
 if __name__ == '__main__':
@@ -94,9 +116,6 @@ if __name__ == '__main__':
                 speak('Querying the universal DataBank.')
                 speak(search_wikipedia(query))
 
-            #Wolfrom Alpha
-            # COMIN FUTURE...
-
             # Note taking
             if query[0] == 'take note':
                 speak('Ready to record your note.')
@@ -107,6 +126,10 @@ if __name__ == '__main__':
                     newFile.write(newNote)
                 speak('Note Written')
 
+            #Wolframalpha #Coming future
+
+
+            #EXIT
             if query[0] == 'exit':
                 speak('Goodbye Sir')
                 break
