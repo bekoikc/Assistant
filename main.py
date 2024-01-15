@@ -5,6 +5,10 @@ import pyttsx3
 import webbrowser
 import wikipedia
 import wolframalpha
+import time
+import winsound
+from selenium import webdriver
+from selenium.webdriver.common.keys import Keys
 
 # speech engine initialization
 engine = pyttsx3.init()
@@ -12,10 +16,17 @@ voices = engine.getProperty('voices')
 engine.setProperty('voice', voices[0].id) # 0 male 1 = female
 activationWord = 'jarvis'
 
+
+# Youtube music link
+ytMusiclink = r"https://music.youtube.com/playlist?list=PL4LtaZuYCvhsumxWF7jQj9iouTXL5zT6k"
+
 # Configure browser
 # set the path
 opera_path = r"C:\Users\bekob\AppData\Local\Programs\Opera\launcher.exe"
 webbrowser.register('opera', None, webbrowser.BackgroundBrowser(opera_path))
+
+# Configure Selenium WebDriver
+driver = webdriver.Chrome()
 
 # Wolfrom alpha  client
 appId = 'HEW2PG-TQXWARELA7'
@@ -62,6 +73,9 @@ def search_wikipedia(query = ''):
         wikiSummary = str(wikiPage.summary)
         return wikiSummary
 
+#wolframAlpha
+"""
+
 #def search_wolframAlpha
 #def search_wolframAlpha(query = ''):
     #response = wolfromClient.query(query)
@@ -73,17 +87,17 @@ def search_wikipedia(query = ''):
         #return 'Could not computer'
 
     # Query resolved
-    #else:
-        #result = ''
+    else:
+        result = ''
         # Question
-        #pod0 = response['pod'][0]
+        pod0 = response['pod'][0]
 
-        #pod1 = response['pod'][1]
-        # May contain the answer, has the highest confidence value
-        # If it's primary, or has the title of result or definition, then it's the offical result
-        #if(('result') in pod1['@title'].lower()) or (pod1.get('@primary', 'false') == 'true') or ('definition' in pod1['@title'].lower()):
+        pod1 = response['pod'][1]
+        #May contain the answer, has the highest confidence value
+        #If it's primary, or has the title of result or definition, then it's the offical result
+        if(('result') in pod1['@title'].lower()) or (pod1.get('@primary', 'false') == 'true') or ('definition' in pod1['@title'].lower()):
 
-
+"""
 
 #Main loop
 if __name__ == '__main__':
@@ -96,13 +110,8 @@ if __name__ == '__main__':
             query.pop(0)
 
             #list commands
-            if query[0] == 'say':
-                if 'everything is okey' in query:
-                    speak('Greating, all sir')
-                else:
-                    query.pop(0) # Remove Say
-                    speech = ' '.join(query)
-                    speak(speech)
+            #if query[0] == 'how' or query[1] == 'are' or query[2] == 'you':
+                #speak('Everything is okey sir.what do you want me to do')
 
             # Navigation
             if query[0] == 'go' and query[1] == 'to':
@@ -126,10 +135,22 @@ if __name__ == '__main__':
                     newFile.write(newNote)
                 speak('Note Written')
 
-            #Wolframalpha #Coming future
+            # Wolframalpha
+            # Coming future
 
-
-            #EXIT
+            # Snooze
+            if query[0] == 'one' or query[1] == 'minute':
+                speak('Going to sleep for 1 minute')
+                time.sleep(60)
+            # Play Music
+            if query[0] == 'play' or query[1] == 'music':
+                speak('Opening Youtube Music Sir')
+                webbrowser.get('opera').open_new('https://music.youtube.com/playlist?list=PL4LtaZuYCvhsumxWF7jQj9iouTXL5zT6k')
+            # Search Eray on Youtube
+            if query[0] == 'start' or query[1] == 'video':
+                speak('Opening Eray Sir')
+                webbrowser.get('opera').open_new("https://www.youtube.com/@erayozkenar/videos")
+            # EXIT
             if query[0] == 'exit':
                 speak('Goodbye Sir')
                 break
