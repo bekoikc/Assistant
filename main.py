@@ -134,10 +134,6 @@ if __name__ == '__main__':
                 with open('note_%s.txt' % now, 'w') as newFile:
                     newFile.write(newNote)
                 speak('Note Written')
-
-            # Wolframalpha
-            # Coming future
-
             # Snooze
             if query[0] == 'one' or query[1] == 'minute':
                 speak('Going to sleep for 1 minute')
