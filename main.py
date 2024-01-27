@@ -1,4 +1,5 @@
 import datetime
+import os
 from logging.config import listen
 import speech_recognition as sr
 import pyttsx3
@@ -150,3 +151,5 @@ if __name__ == '__main__':
             if query[0] == 'exit':
                 speak('Goodbye Sir')
                 break
+            if query[0] == 'hello':
+                os.open(r"E:\Ben burgerking söyledim ihtiyar.m4a")
