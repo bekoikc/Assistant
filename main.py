@@ -9,6 +9,8 @@ import wikipedia
 import wolframalpha
 import time
 import winsound
+import keyboard
+
 
 
 # speech engine initialization
@@ -33,9 +35,18 @@ randomWelcomeWords = random.choice(welcomeWords)
 opera_path = r"C:\Users\bekob\AppData\Local\Programs\Opera\launcher.exe"
 webbrowser.register('opera', None, webbrowser.BackgroundBrowser(opera_path))
 
+# notepad path
+notepad_path = r"G:\Assistan\notepad.py"
+
 # Wolfrom alpha  client
 appId = 'HEW2PG-TQXWARELA7'
 wolfromClient = wolframalpha.Client(appId)
+
+
+# Run other python files
+def on_key_press(key):
+    if key.name == 'f10' and keyboard.is_pressed('shift'):
+        pass
 
 def speak(text, rate = 120):
     engine.setProperty('rate', rate)
@@ -105,13 +116,18 @@ if __name__ == '__main__':
             if query[0] == 'play' or query[1] == 'music':
                 speak('Opening Spotify Sir')
                 os.open(spotiPath)
+
             # Search Eray on Youtube
             if query[0] == 'funny' or query[1] == 'videos':
                 speak('Opening Eray Sir')
                 webbrowser.get('opera').open_new("https://www.youtube.com/@erayozkenar/videos")
-            # Translate
-            if query[0] == 'translate':
-                speak('Opening translater')
+
+            # Notepad writing
+            if query[0] == 'notepad':
+                speak('opening notepad')
+                os.open(notepad_path)
+
+
 
             # EXIT
             if query[0] == 'exit':
