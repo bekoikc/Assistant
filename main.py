@@ -127,6 +127,7 @@ if __name__ == '__main__':
                 speak('opening notepad')
                 os.open(notepad_path)
 
+            # Voice Recorder
 
 
             # EXIT
