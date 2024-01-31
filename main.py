@@ -126,8 +126,7 @@ if __name__ == '__main__':
             if query[0] == 'notepad':
                 speak('opening notepad')
                 os.open(notepad_path)
-
-            # Voice Recorder
+                on_key_press()
 
 
             # EXIT
